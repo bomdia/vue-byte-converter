@@ -1,15 +1,17 @@
 <template>
   <span>
-    {{ converted }}
-    <template v-if="viewUnit && !viewName">
-      {{ to + (speed ? '/s' : '' ) }}
-    </template>
-    <template v-else-if="!viewUnit && viewName">
-      {{ toAsName + (speed ? '/s' : '' ) }}
-    </template>
-    <template v-else-if="viewUnit && viewName">
-      {{ toAsName + (speed ? '/s' : '' ) + ' (' + to + (speed ? '/s' : '' ) + ')' }}
-    </template>
+    <slot v-bind="{...$props,converted,convertedText,toAsName}">
+      {{ convertedText }}
+      <template v-if="viewDataFormat && !viewName">
+        {{ to + (speed ? '/s' : '' ) }}
+      </template>
+      <template v-else-if="!viewDataFormat && viewName">
+        {{ toAsName + (speed ? '/s' : '' ) }}
+      </template>
+      <template v-else-if="viewDataFormat && viewName">
+        {{ toAsName + (speed ? '/s' : '' ) + ' (' + to + (speed ? '/s' : '' ) + ')' }}
+      </template>
+    </slot>
   </span>
 </template>
 
@@ -24,7 +26,7 @@ export default {
     viewName: {
       type: Boolean
     },
-    viewUnit: {
+    viewDataFormat: {
       type: Boolean
     },
     speed: {
@@ -55,8 +57,7 @@ export default {
     }
   },
   computed: {
-    converted () {
-      const convertedVal = this.$byteConverter.convert(this.value, this.from, this.to)
+    convertedText () {
       const options = {}
       if (this.minimumFractionDigits >= 0 && this.minimumFractionDigits <= 20) {
         options.minimumFractionDigits = this.minimumFractionDigits
@@ -64,7 +65,10 @@ export default {
       if (this.maximumFractionDigits >= 0 && this.maximumFractionDigits <= 20) {
         options.maximumFractionDigits = this.maximumFractionDigits
       }
-      return (this.localize ? convertedVal.toLocaleString(this.locale, options) : convertedVal)
+      return (this.localize ? this.converted.toLocaleString(this.locale, options) : this.converted.toString())
+    },
+    converted () {
+      return this.$byteConverter.convert(this.value, this.from, this.to)
     },
     toAsName () {
       return this.$byteConverter.getDataFormat(this.to).name

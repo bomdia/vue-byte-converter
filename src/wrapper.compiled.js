@@ -5,8 +5,6 @@ import VDataFormatAutoConverter_ from './v-data-format-auto-converter.vue'
 
 import VDataFormatConverter_ from './v-data-format-converter.vue'
 
-import VDataFormatList_ from './v-data-format-list.vue'
-
 // Declare install function executed by Vue.use()
 function install (Vue) {
   if (install.installed) return
@@ -17,8 +15,6 @@ function install (Vue) {
   Vue.component('v-data-format-auto-converter', VDataFormatAutoConverter_)
 
   Vue.component('v-data-format-converter', VDataFormatConverter_)
-
-  Vue.component('v-data-format-list', VDataFormatList_)
 }
 
 // Create module definition for Vue.use()
@@ -45,5 +41,3 @@ export default plugin
 export var VDataFormatAutoConverter = VDataFormatAutoConverter_
 
 export var VDataFormatConverter = VDataFormatConverter_
-
-export var VDataFormatList = VDataFormatList_

@@ -349,6 +349,8 @@ var ByteConverterClass = unwrapExports(byteConverter_umd);
 //
 //
 //
+//
+//
 
 var script = {
   name: 'VDataFormatAutoConverter',
@@ -396,12 +398,12 @@ var script = {
   },
   data () {
     return {
-      scaledVal: { value: null, dataFormat: null }
+      // converted: { value: null, dataFormat: null }
     }
   },
   computed: {
-    converted () {
-      if (this.scaledVal.dataFormat === null || this.scaledVal.value === null) { return '' }
+    convertedText () {
+      if (this.converted.dataFormat === null || this.converted.value === null) { return '' }
       const options = {};
       if (this.minimumFractionDigits >= 0 && this.minimumFractionDigits <= 20) {
         options.minimumFractionDigits = this.minimumFractionDigits;
@@ -409,24 +411,22 @@ var script = {
       if (this.maximumFractionDigits >= 0 && this.maximumFractionDigits <= 20) {
         options.maximumFractionDigits = this.maximumFractionDigits;
       }
-      return (this.localize ? this.scaledVal.value.toLocaleString(this.locale, options) : this.scaledVal.value)
+      return (this.localize ? this.converted.value.toLocaleString(this.locale, options) : this.converted.value)
     },
     to () {
-      if (this.scaledVal.dataFormat !== null) { return this.scaledVal.dataFormat }
+      if (this.converted.dataFormat !== null) { return this.converted.dataFormat }
       return ''
     },
     toAsName () {
-      if (this.scaledVal.dataFormat !== null) { return this.$byteConverter.getDataFormat(this.scaledVal.dataFormat).name }
+      if (this.converted.dataFormat !== null) { return this.$byteConverter.getDataFormat(this.converted.dataFormat).name }
       return ''
+    },
+    converted () {
+      return this.$byteConverter.autoScale(this.value, this.from, this.scaleOptions)
     }
   },
   mounted () {
     this.autoScale();
-  },
-  methods: {
-    autoScale () {
-      this.scaledVal = this.$byteConverter.autoScale(this.value, this.from, this.scaleOptions);
-    }
   }
 };
 
@@ -569,31 +569,51 @@ var __vue_render__ = function() {
   return _c(
     "span",
     [
-      _vm._v("\n  " + _vm._s(_vm.converted) + "\n  "),
-      _vm.viewUnit && !_vm.viewName
-        ? [_vm._v("\n    " + _vm._s(_vm.to + (_vm.speed ? "/s" : "")) + "\n  ")]
-        : !_vm.viewUnit && _vm.viewName
-        ? [
-            _vm._v(
-              "\n    " + _vm._s(_vm.toAsName + (_vm.speed ? "/s" : "")) + "\n  "
-            )
-          ]
-        : _vm.viewUnit && _vm.viewName
-        ? [
-            _vm._v(
-              "\n    " +
-                _vm._s(
-                  _vm.toAsName +
-                    (_vm.speed ? "/s" : "") +
-                    " (" +
-                    _vm.to +
-                    (_vm.speed ? "/s" : "") +
-                    ")"
-                ) +
-                "\n  "
-            )
-          ]
-        : _vm._e()
+      _vm._t(
+        "default",
+        [
+          _vm._v("\n    " + _vm._s(_vm.convertedText) + "\n    "),
+          _vm.viewUnit && !_vm.viewName
+            ? [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.to + (_vm.speed ? "/s" : "")) +
+                    "\n    "
+                )
+              ]
+            : !_vm.viewUnit && _vm.viewName
+            ? [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.toAsName + (_vm.speed ? "/s" : "")) +
+                    "\n    "
+                )
+              ]
+            : _vm.viewUnit && _vm.viewName
+            ? [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(
+                      _vm.toAsName +
+                        (_vm.speed ? "/s" : "") +
+                        " (" +
+                        _vm.to +
+                        (_vm.speed ? "/s" : "") +
+                        ")"
+                    ) +
+                    "\n    "
+                )
+              ]
+            : _vm._e()
+        ],
+        null,
+        Object.assign({}, _vm.$props, {
+          converted: _vm.converted.value,
+          convertedText: _vm.convertedText,
+          to: _vm.to,
+          toAsName: _vm.toAsName
+        })
+      )
     ],
     2
   )
@@ -604,11 +624,11 @@ __vue_render__._withStripped = true;
   /* style */
   const __vue_inject_styles__ = function (inject) {
     if (!inject) { return }
-    inject("data-v-6a36b8e1_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", map: {"version":3,"sources":[],"names":[],"mappings":"","file":"v-data-format-auto-converter.vue"}, media: undefined });
+    inject("data-v-1760daf8_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", map: {"version":3,"sources":[],"names":[],"mappings":"","file":"v-data-format-auto-converter.vue"}, media: undefined });
 
   };
   /* scoped */
-  const __vue_scope_id__ = "data-v-6a36b8e1";
+  const __vue_scope_id__ = "data-v-1760daf8";
   /* module identifier */
   const __vue_module_identifier__ = undefined;
   /* functional template */
@@ -647,6 +667,8 @@ __vue_render__._withStripped = true;
 //
 //
 //
+//
+//
 
 var script$1 = {
   name: 'VDataFormatConverter',
@@ -658,7 +680,7 @@ var script$1 = {
     viewName: {
       type: Boolean
     },
-    viewUnit: {
+    viewDataFormat: {
       type: Boolean
     },
     speed: {
@@ -689,8 +711,7 @@ var script$1 = {
     }
   },
   computed: {
-    converted () {
-      const convertedVal = this.$byteConverter.convert(this.value, this.from, this.to);
+    convertedText () {
       const options = {};
       if (this.minimumFractionDigits >= 0 && this.minimumFractionDigits <= 20) {
         options.minimumFractionDigits = this.minimumFractionDigits;
@@ -698,7 +719,10 @@ var script$1 = {
       if (this.maximumFractionDigits >= 0 && this.maximumFractionDigits <= 20) {
         options.maximumFractionDigits = this.maximumFractionDigits;
       }
-      return (this.localize ? convertedVal.toLocaleString(this.locale, options) : convertedVal)
+      return (this.localize ? this.converted.toLocaleString(this.locale, options) : this.converted.toString())
+    },
+    converted () {
+      return this.$byteConverter.convert(this.value, this.from, this.to)
     },
     toAsName () {
       return this.$byteConverter.getDataFormat(this.to).name
@@ -717,31 +741,50 @@ var __vue_render__$1 = function() {
   return _c(
     "span",
     [
-      _vm._v("\n  " + _vm._s(_vm.converted) + "\n  "),
-      _vm.viewUnit && !_vm.viewName
-        ? [_vm._v("\n    " + _vm._s(_vm.to + (_vm.speed ? "/s" : "")) + "\n  ")]
-        : !_vm.viewUnit && _vm.viewName
-        ? [
-            _vm._v(
-              "\n    " + _vm._s(_vm.toAsName + (_vm.speed ? "/s" : "")) + "\n  "
-            )
-          ]
-        : _vm.viewUnit && _vm.viewName
-        ? [
-            _vm._v(
-              "\n    " +
-                _vm._s(
-                  _vm.toAsName +
-                    (_vm.speed ? "/s" : "") +
-                    " (" +
-                    _vm.to +
-                    (_vm.speed ? "/s" : "") +
-                    ")"
-                ) +
-                "\n  "
-            )
-          ]
-        : _vm._e()
+      _vm._t(
+        "default",
+        [
+          _vm._v("\n    " + _vm._s(_vm.convertedText) + "\n    "),
+          _vm.viewDataFormat && !_vm.viewName
+            ? [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.to + (_vm.speed ? "/s" : "")) +
+                    "\n    "
+                )
+              ]
+            : !_vm.viewDataFormat && _vm.viewName
+            ? [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.toAsName + (_vm.speed ? "/s" : "")) +
+                    "\n    "
+                )
+              ]
+            : _vm.viewDataFormat && _vm.viewName
+            ? [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(
+                      _vm.toAsName +
+                        (_vm.speed ? "/s" : "") +
+                        " (" +
+                        _vm.to +
+                        (_vm.speed ? "/s" : "") +
+                        ")"
+                    ) +
+                    "\n    "
+                )
+              ]
+            : _vm._e()
+        ],
+        null,
+        Object.assign({}, _vm.$props, {
+          converted: _vm.converted,
+          convertedText: _vm.convertedText,
+          toAsName: _vm.toAsName
+        })
+      )
     ],
     2
   )
@@ -752,11 +795,11 @@ __vue_render__$1._withStripped = true;
   /* style */
   const __vue_inject_styles__$1 = function (inject) {
     if (!inject) { return }
-    inject("data-v-8ba31468_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", map: {"version":3,"sources":[],"names":[],"mappings":"","file":"v-data-format-converter.vue"}, media: undefined });
+    inject("data-v-261b1d68_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", map: {"version":3,"sources":[],"names":[],"mappings":"","file":"v-data-format-converter.vue"}, media: undefined });
 
   };
   /* scoped */
-  const __vue_scope_id__$1 = "data-v-8ba31468";
+  const __vue_scope_id__$1 = "data-v-261b1d68";
   /* module identifier */
   const __vue_module_identifier__$1 = undefined;
   /* functional template */
@@ -780,110 +823,6 @@ __vue_render__$1._withStripped = true;
     undefined
   );
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var script$2 = {
-  name: 'VDataFormatList',
-  props: {
-    isDescendent: { type: Boolean }
-  },
-  data () {
-    return {
-      typeList: this.$byteConverter.typeList
-    }
-  },
-  computed: {
-    orderedTypeList () {
-      const arr = Object.assign([], this.typeList);
-      return arr.sort((a, b) => { return this.$byteConverter.compareTo(a.dataFormat, b.dataFormat, this.isDescendent) })
-    }
-  }
-};
-
-/* script */
-const __vue_script__$2 = script$2;
-
-/* template */
-var __vue_render__$2 = function() {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c(
-    "span",
-    [
-      _vm._t(
-        "default",
-        [
-          _c(
-            "ul",
-            _vm._l(_vm.typeList, function(ref) {
-              var dataFormat = ref.dataFormat;
-              var name = ref.name;
-              return _c("li", { key: dataFormat }, [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(name + " (" + dataFormat + ")") +
-                    "\n      "
-                )
-              ])
-            }),
-            0
-          )
-        ],
-        { typeList: _vm.orderedTypeList }
-      )
-    ],
-    2
-  )
-};
-var __vue_staticRenderFns__$2 = [];
-__vue_render__$2._withStripped = true;
-
-  /* style */
-  const __vue_inject_styles__$2 = function (inject) {
-    if (!inject) { return }
-    inject("data-v-54bee87b_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", map: {"version":3,"sources":[],"names":[],"mappings":"","file":"v-data-format-list.vue"}, media: undefined });
-
-  };
-  /* scoped */
-  const __vue_scope_id__$2 = "data-v-54bee87b";
-  /* module identifier */
-  const __vue_module_identifier__$2 = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$2 = false;
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$2 = normalizeComponent(
-    { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
-    __vue_inject_styles__$2,
-    __vue_script__$2,
-    __vue_scope_id__$2,
-    __vue_is_functional_template__$2,
-    __vue_module_identifier__$2,
-    false,
-    createInjector,
-    undefined,
-    undefined
-  );
-
 // Declare install function executed by Vue.use()
 function install (Vue) {
   if (install.installed) { return }
@@ -894,8 +833,6 @@ function install (Vue) {
   Vue.component('v-data-format-auto-converter', __vue_component__);
 
   Vue.component('v-data-format-converter', __vue_component__$1);
-
-  Vue.component('v-data-format-list', __vue_component__$2);
 }
 
 // Create module definition for Vue.use()
@@ -919,7 +856,5 @@ var VDataFormatAutoConverter = __vue_component__;
 
 var VDataFormatConverter = __vue_component__$1;
 
-var VDataFormatList = __vue_component__$2;
-
 export default plugin;
-export { VDataFormatAutoConverter, VDataFormatConverter, VDataFormatList };
+export { VDataFormatAutoConverter, VDataFormatConverter };

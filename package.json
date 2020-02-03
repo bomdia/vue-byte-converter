@@ -7,8 +7,7 @@
 	"unpkg": "dist/vue-byte-converter.min.js",
 	"browser": {
 		"./sfc/v-data-format-auto-converter": "src/v-data-format-auto-converter.vue",
-		"./sfc/v-data-format-converter": "src/v-data-format-converter.vue",
-		"./sfc/v-data-format-list": "src/v-data-format-list.vue"
+		"./sfc/v-data-format-converter": "src/v-data-format-converter.vue"
 	},
 	"scripts": {
 		"build": "yarn compile-js-wrapper & yarn no-pre-compile-build:umd & yarn no-pre-compile-build:es & yarn no-pre-compile-build:unpkg",
