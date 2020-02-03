@@ -2,13 +2,13 @@
   <span>
     <slot v-bind="{...$props,converted: converted.value,convertedText,to,toAsName}">
       {{ convertedText }}
-      <template v-if="viewUnit && !viewName">
+      <template v-if="viewDataFormat && !viewName">
         {{ to + (speed ? '/s' : '' ) }}
       </template>
-      <template v-else-if="!viewUnit && viewName">
+      <template v-else-if="!viewDataFormat && viewName">
         {{ toAsName + (speed ? '/s' : '' ) }}
       </template>
-      <template v-else-if="viewUnit && viewName">
+      <template v-else-if="viewDataFormat && viewName">
         {{ toAsName + (speed ? '/s' : '' ) + ' (' + to + (speed ? '/s' : '' ) + ')' }}
       </template>
     </slot>
@@ -23,7 +23,7 @@ export default {
       type: Number,
       required: true
     },
-    viewUnit: {
+    viewDataFormat: {
       type: Boolean,
       default: true
     },
@@ -60,11 +60,6 @@ export default {
       default () { return this.$byteConverter.defaultAutoScaleOptions }
     }
   },
-  data () {
-    return {
-      // converted: { value: null, dataFormat: null }
-    }
-  },
   computed: {
     convertedText () {
       if (this.converted.dataFormat === null || this.converted.value === null) return ''
@@ -88,9 +83,6 @@ export default {
     converted () {
       return this.$byteConverter.autoScale(this.value, this.from, this.scaleOptions)
     }
-  },
-  mounted () {
-    this.autoScale()
   }
 }
 </script>

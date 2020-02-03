@@ -365,7 +365,7 @@
 	      type: Number,
 	      required: true
 	    },
-	    viewUnit: {
+	    viewDataFormat: {
 	      type: Boolean,
 	      default: true
 	    },
@@ -402,11 +402,6 @@
 	      default () { return this.$byteConverter.defaultAutoScaleOptions }
 	    }
 	  },
-	  data () {
-	    return {
-	      // converted: { value: null, dataFormat: null }
-	    }
-	  },
 	  computed: {
 	    convertedText () {
 	      if (this.converted.dataFormat === null || this.converted.value === null) { return '' }
@@ -430,9 +425,6 @@
 	    converted () {
 	      return this.$byteConverter.autoScale(this.value, this.from, this.scaleOptions)
 	    }
-	  },
-	  mounted () {
-	    this.autoScale();
 	  }
 	};
 
@@ -579,7 +571,7 @@
 	        "default",
 	        [
 	          _vm._v("\n    " + _vm._s(_vm.convertedText) + "\n    "),
-	          _vm.viewUnit && !_vm.viewName
+	          _vm.viewDataFormat && !_vm.viewName
 	            ? [
 	                _vm._v(
 	                  "\n      " +
@@ -587,7 +579,7 @@
 	                    "\n    "
 	                )
 	              ]
-	            : !_vm.viewUnit && _vm.viewName
+	            : !_vm.viewDataFormat && _vm.viewName
 	            ? [
 	                _vm._v(
 	                  "\n      " +
@@ -595,7 +587,7 @@
 	                    "\n    "
 	                )
 	              ]
-	            : _vm.viewUnit && _vm.viewName
+	            : _vm.viewDataFormat && _vm.viewName
 	            ? [
 	                _vm._v(
 	                  "\n      " +
@@ -630,11 +622,11 @@
 	  /* style */
 	  const __vue_inject_styles__ = function (inject) {
 	    if (!inject) { return }
-	    inject("data-v-1760daf8_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", map: {"version":3,"sources":[],"names":[],"mappings":"","file":"v-data-format-auto-converter.vue"}, media: undefined });
+	    inject("data-v-61afc16a_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", map: {"version":3,"sources":[],"names":[],"mappings":"","file":"v-data-format-auto-converter.vue"}, media: undefined });
 
 	  };
 	  /* scoped */
-	  const __vue_scope_id__ = "data-v-1760daf8";
+	  const __vue_scope_id__ = "data-v-61afc16a";
 	  /* module identifier */
 	  const __vue_module_identifier__ = undefined;
 	  /* functional template */

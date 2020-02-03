@@ -1,6 +1,6 @@
 {
 	"name": "@wtfcode/vue-byte-converter",
-	"version": "1.0.1",
+	"version": "1.0.5",
 	"description": "Vue Components For Byte Converter Library",
 	"main": "dist/vue-byte-converter.umd.js",
 	"module": "dist/vue-byte-converter.esm.js",
