@@ -1,0 +1,79 @@
+{
+	"name": "@wtfcode/vue-byte-converter",
+	"version": "1.0.0",
+	"description": "Vue Components For Byte Converter Library",
+	"main": "dist/vue-byte-converter.umd.js",
+	"module": "dist/vue-byte-converter.esm.js",
+	"unpkg": "dist/vue-byte-converter.min.js",
+	"browser": {
+		"./sfc/v-data-format-auto-converter": "src/v-data-format-auto-converter.vue",
+		"./sfc/v-data-format-converter": "src/v-data-format-converter.vue",
+		"./sfc/v-data-format-list": "src/v-data-format-list.vue"
+	},
+	"scripts": {
+		"build": "yarn compile-js-wrapper & yarn no-pre-compile-build:umd & yarn no-pre-compile-build:es & yarn no-pre-compile-build:unpkg",
+		"build:umd": "yarn compile-js-wrapper & rollup --config build/rollup.config.js --format umd --file dist/vue-byte-converter.umd.js",
+		"build:es": "yarn compile-js-wrapper & rollup --config build/rollup.config.js --format es --file dist/vue-byte-converter.esm.js",
+		"build:unpkg": "yarn compile-js-wrapper & rollup --config build/rollup.config.js --format iife --file dist/vue-byte-converter.min.js",
+		"no-pre-compile-build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-byte-converter.umd.js",
+		"no-pre-compile-build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-byte-converter.esm.js",
+		"no-pre-compile-build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-byte-converter.min.js",
+		"lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src build",
+		"lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src build",
+		"compile-js-wrapper": "yarn lint:fix & node build/compile-wrapper.js & yarn lint:fix"
+	},
+	"dependencies": {
+		"@wtfcode/byte-converter": "^1.7.10"
+	},
+	"keywords": [
+		"vue",
+		"vuejs",
+		"components",
+		"byte",
+		"bit",
+		"conversion",
+		"byte-converter",
+		"autoconvert",
+		"byte converter",
+		"comparison",
+		"binary",
+		"decimal",
+		"kilobit",
+		"megabit",
+		"megabyte",
+		"mebibyte"
+	],
+	"devDependencies": {
+		"lodash": "^4.17.15",
+		"require-context": "^1.1.0",
+		"url-join": "^4.0.1",
+		"rollup": "^1.31.0",
+		"@rollup/plugin-buble": "^0.21.1",
+		"@rollup/plugin-commonjs": "^11.0.2",
+		"@rollup/plugin-node-resolve": "7.1.0",
+		"rollup-plugin-vue": "^5.1.6",
+		"vue": "^2.6.11",
+		"vue-template-compiler": "^2.6.11",
+		"eslint": "^6.8.0",
+		"eslint-config-standard": "^14.1.0",
+		"eslint-friendly-formatter": "^4.0.1",
+		"eslint-loader": "^3.0.3",
+		"eslint-plugin-html": "^6.0.0",
+		"eslint-plugin-import": "^2.20.1",
+		"eslint-plugin-node": "^11.0.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1",
+		"eslint-plugin-vue": "^6.1.2"
+	},
+	"author": "bomdia",
+	"bugs": {
+		"url": "https://github.com/bomdia/vue-byte-converter/issues",
+		"email": "bomdia.the.troll@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bomdia/vue-byte-converter.git"
+	},
+	"license": "MIT",
+	"private": false
+}
