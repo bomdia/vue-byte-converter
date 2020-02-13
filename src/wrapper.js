@@ -37,3 +37,4 @@ export default plugin
 <% for(const name of modules) { %>
 <%= "export var " + names[name] + " = " + names[name] + "_" %>
 <% } %>
+export var ByteConverter = ByteConverterClass

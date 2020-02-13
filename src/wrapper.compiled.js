@@ -41,3 +41,5 @@ export default plugin
 export var VDataFormatAutoConverter = VDataFormatAutoConverter_
 
 export var VDataFormatConverter = VDataFormatConverter_
+
+export var ByteConverter = ByteConverterClass

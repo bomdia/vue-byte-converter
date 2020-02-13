@@ -854,6 +854,9 @@
 
 	var VDataFormatConverter = __vue_component__$1;
 
+	var ByteConverter = ByteConverterClass;
+
+	exports.ByteConverter = ByteConverter;
 	exports.VDataFormatAutoConverter = VDataFormatAutoConverter;
 	exports.VDataFormatConverter = VDataFormatConverter;
 	exports.default = plugin;

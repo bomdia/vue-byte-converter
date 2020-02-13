@@ -2,6 +2,8 @@
 Vue Components for use [**Byte Converter**](https://github.com/bomdia/byte-converter) libary easily within vue
 
 import the component and use Vue.use() for register the components
+there are a named view for all components in kebapcase es = VDataFormatConverter
+there is another one named view: **ByteConverter** that expose the original library class packaged in the dist file in case you need
 
 the component register an instance property: $byteConverter for use byte-converter Library in any other part of the application
 
