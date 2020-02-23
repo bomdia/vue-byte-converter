@@ -1,6 +1,6 @@
 {
 	"name": "@wtfcode/vue-byte-converter",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Vue Components For Byte Converter Library",
 	"main": "dist/vue-byte-converter.umd.js",
 	"module": "dist/vue-byte-converter.esm.js",
@@ -22,7 +22,7 @@
 		"compile-js-wrapper": "yarn lint:fix & node build/compile-wrapper.js & yarn lint:fix"
 	},
 	"dependencies": {
-		"@wtfcode/byte-converter": "^1.7.10"
+		"@wtfcode/byte-converter": "^1.7.11"
 	},
 	"keywords": [
 		"vue",
@@ -50,7 +50,7 @@
 		"lodash": "^4.17.15",
 		"require-context": "^1.1.0",
 		"url-join": "^4.0.1",
-		"rollup": "^1.31.0",
+		"rollup": "^1.31.1",
 		"@rollup/plugin-buble": "^0.21.1",
 		"@rollup/plugin-commonjs": "^11.0.2",
 		"@rollup/plugin-node-resolve": "7.1.1",
@@ -66,7 +66,7 @@
 		"eslint-plugin-node": "^11.0.0",
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-standard": "^4.0.1",
-		"eslint-plugin-vue": "^6.1.2"
+		"eslint-plugin-vue": "^6.2.1"
 	},
 	"author": "bomdia",
 	"bugs": {
